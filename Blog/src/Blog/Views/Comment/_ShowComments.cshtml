@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Blog.Models.Comment>
+
+<h3>Comments</h3>
+@foreach (var comm in Model)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+                        <h4 class="post-title">
+                            @comm.Text
+                        </h4>
+                    <p class="post-meta">@comm.Date</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+}

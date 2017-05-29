@@ -1,0 +1,15 @@
+﻿@model Blog.Models.Comment
+
+<form asp-controller="Comment" asp-action="Create" method="post">
+    <input type="hidden" asp-for="Date" />
+    <input type="hidden" asp-for="PostId"/>
+    <input type="hidden" asp-for="UserId"/>
+    <p>
+        Write comment here:<Br>
+        <textarea asp-for="Text" cols="30" rows="5"></textarea>
+    </p>
+    <p>
+        <input type="submit" class="btn btn-success" value="Send comment">
+        <input type="reset" class="btn" value="Clear">
+    </p>
+</form>

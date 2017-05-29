@@ -1,0 +1,39 @@
+﻿@model Blog.Models.Post
+@{
+    ViewData["Title"] = "Create a post";
+}
+
+<style>
+    input {
+        color: black
+    }
+    textarea {
+        color: black
+    }
+</style>
+<header class="intro-header" style="background-image: url('/images/creation-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Post creation</h1>
+                    <form asp-controller="Post" asp-action="Create" name="posttext" method="post">
+                        <input type="hidden" asp-for="Date" />
+                        <p>
+                            <h2>Title:</h2>
+                            <input type="text" asp-for="Title" size="40" />
+                        </p>
+                        <p>
+                            <h2>Write text here:</h2>
+                            <textarea asp-for="Text" cols="100" rows="10"></textarea>
+                        </p>
+                        <p>
+                            <input type="submit" class="btn btn-success" value="Publish">
+                            <input type="reset" class="btn" value="Clear">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

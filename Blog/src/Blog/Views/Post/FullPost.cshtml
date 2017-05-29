@@ -1,0 +1,43 @@
+﻿@model Blog.ViewModels.PostViewModel
+@{
+    ViewData["Title"] = "Full post";
+}
+
+<header class="intro-header" style="background-image: url('/images/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1> @Model.Title</h1>
+                    <span class="meta">Posted on @Model.Date</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>@Model.Text</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            @Html.Partial("~/Views/Comment/_Create.cshtml", Model.Comment)
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            @Html.Partial("~/Views/Comment/_ShowComments.cshtml", Model.Comments)
+        </div>
+    </div>
+</div>

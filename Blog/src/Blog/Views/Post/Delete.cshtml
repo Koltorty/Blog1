@@ -1,0 +1,26 @@
+﻿@model Blog.Models.Post
+
+<header class="intro-header" style="background-image: url('/images/delete-post-bg-2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Delete Post</h1>
+                    <hr class="small">
+                    <span class="subheading">Are you sure you want to delete this post and it's comments?</span>
+                    <div class="lead">
+                            <p>@Model.Title</p>
+                    </div>
+                    <span class="meta">Posted on @Model.Date</span>
+                    <hr class="small">
+                    <div>
+                        <form asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                            <input type="submit" class="btn btn-danger" value="Delete" />
+                        </form>
+                        <a asp-controller="Post" asp-action="FullPost" asp-route-id="@Model.Id" class="btn">Back to post</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

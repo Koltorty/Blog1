@@ -1,0 +1,51 @@
+﻿@model Blog.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<style>
+    input {
+        color: black;
+    }
+</style>
+
+<header class="intro-header" style="background-image: url('/images/registration-bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Registration</h1>
+                    <hr class="small"/>
+                    <form method="post" asp-controller="Account" asp-action="Register">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div>
+                            <label asp-for="Email"></label><br />
+                            <input asp-for="Email" />
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Login"></label><br />
+                            <input asp-for="Login" />
+                            <span asp-validation-for="Login"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Password"></label><br />
+                            <input asp-for="Password" />
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div>
+                            <label asp-for="PasswordConfirm"></label><br />
+                            <input asp-for="PasswordConfirm" />
+                            <span asp-validation-for="PasswordConfirm"></span>
+                        </div>
+                        <div>
+                            <input type="submit" value="Register" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+

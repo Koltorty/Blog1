@@ -1,0 +1,135 @@
+﻿@using Blog.Helpers
+@using Blog
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfiguration
+@using Microsoft.ApplicationInsights.Extensibility
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewData["Title"] - Blog</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/clean-blog.min.css" />
+        <link rel="stylesheet" href="~/kendo/2014.1.318/kendo.rtl.min.css" />
+        <link rel="stylesheet" href="~/kendo/2014.1.318/kendo.default.min.css" />
+        <link rel="stylesheet" href="~/kendo/2014.1.318/kendo.common.min.css" />
+        <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+</head>
+
+<body>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+        <script src="~/js/jqBootstrapValidation.js"></script>
+        <script src="~/js/contact_me.js"></script>
+        <script src="~/js/clean-blog.min.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu<i class="fa fa-bars"></i>
+                </button>
+                <a asp-controller="Home" asp-action="Index" asp-area="" class="navbar-brand">Blog</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li><a asp-area="Admin" asp-controller="Post" asp-action="Index">Home</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Post" asp-action="Index">Home</a></li>
+                    }
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="UserProfile" asp-action="Edit" asp-route-id="@User.GetLoggedUserId()"> @User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="LogOut"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+    <hr />
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.twitter.com">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.vk.com/id37861042">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-vk fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Koltorty">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Blog 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

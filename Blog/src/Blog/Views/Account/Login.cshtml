@@ -1,0 +1,45 @@
+﻿@model Blog.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Logging";
+}
+
+<style>
+    input {
+        color: black;
+    }
+</style>
+
+<header class="intro-header" style="background-image: url('/images/login-bg-2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Login</h1>
+                    <hr class="small" />
+                    <form method="post" asp-controller="Account" asp-action="Login"
+                          asp-route-returnUrl="@Model.ReturnUrl">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div>
+                            <label asp-for="Login"></label><br/>
+                            <input asp-for="Login"/>
+                            <span asp-validation-for="Login"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Password"></label><br />
+                            <input asp-for="Password" />
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Remember"></label><br />
+                            <input asp-for="Remember" />
+                        </div>
+                        <div>
+                            <input type="submit" value="Log in" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

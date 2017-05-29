@@ -1,0 +1,40 @@
+﻿@model Blog.Models.Post
+
+@{
+    ViewData["Title"] = "Edit post";
+}
+<style>
+    input {
+        color: black;
+    }
+
+    textarea {
+        color: black;
+    }
+</style>
+<header class="intro-header" style="background-image: url('/images/edit-post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Post Edit</h1>
+                    <form asp-controller="Post" asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Date" />
+                        <p>
+                            <b>Title:</b><br>
+                            <input type="text" asp-for="Title" size="40" />
+                        </p>
+                        <p>
+                            Write text here:<Br>
+                            <textarea asp-for="Text" cols="100" rows="10"></textarea>
+                        </p>
+                        <p>
+                            <input type="submit" class="btn btn-success" value="Save changes">
+                            <input type="reset" class="btn" value="Clear">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
