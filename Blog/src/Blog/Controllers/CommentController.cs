@@ -17,18 +17,15 @@ namespace Blog.Controllers
 
         public IActionResult ShowComments(int postId)
         {
-            IEnumerable<Comment> qqq =
-                from qq in _context.Comments
-                where qq.PostId == postId
-                orderby qq.Date descending
-                select qq;
-            return View(qqq);
+            var comments = _context.Comments.Where(c => c.PostId == postId).OrderByDescending(c => c.Date).AsEnumerable();
+            return View(comments);
         }
 
         [HttpPost]
         public ActionResult Create(Comment comm)
         {
             comm.UserId = User.GetLoggedUserId();
+            ViewBag.Name = _context.Users.FirstOrDefault(u => u.Id == User.GetLoggedUserId())?.UserName;
             _context.Comments.Add(comm);
             _context.SaveChanges();
             return RedirectToAction("FullPost", "Post", new { id = comm.PostId });
